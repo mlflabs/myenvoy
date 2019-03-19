@@ -1,0 +1,43 @@
+language: node_js
+
+node_js:
+  - "10"
+
+git:
+  depth: 30
+
+sudo:
+  false
+
+services:
+  - docker
+
+script:
+  npm run $COMMAND
+
+env:
+  global:
+  - PORT=8080
+  - ENVOY_DATABASE_NAME='mbaas'
+  - secure: "OHhz0nTYKxsAD/lpokdwDdX8jHgx37Cm1sn1UwmJtKCu30RXCPXI/fE9eQWQchNORjJoDhsdgPuZdBMk6kpBqy0oRj9a0XfidjdWGqUUjAjp+ml3+mbjgkHT/j7J6rB7lwCpQC2RqKyubKCiudCEDOTYbax2294tI+jXDpl0gS5TBYAwyJsYtbDWH6wrGZjDpxCfIgyj//lUJObmY0qt7teT/38f9bOAuUq3ToBTgwnUlo+ezIu4xwX0MyGtyciKwg7vzAds1sk8SLqIUE1sKNjWTTZHTxF6GCWEqucrcDc03hQseuiKwhYpOj/4hucufGvSuhp8IQon9Hvj6xw2SP0OOC/htrMOaiMebzUk+Voa1vF15GM5vukuhp6ciFt6RHFiI6VKQ9UfKSS7EaNsyqAajU54kiO3aZtxjtbcGFFpXBT6MO049tCAWcp991ExQNkoGQyf6n3MLuJy1ayv6neS91bQE4fN9c3c8g9WbxSDM3MubzTBJQGQcPew+1FgQng33XJZ2m3Pm+7XTShKY1R9HRt1fC4ZeFj9r5BAlojvrsfJrZ2WAcrkdRCg9g2LD/EcNwIuoV0RLoPvp4ttHSlYoK/UQaZFcAVF3UH9QmwL4M3zAAH1cVugJtHfVMmnChzRzD8U8lLyWUZ3asA8tj6m0PqdacePbuzDDXaBa1I="
+
+  matrix:
+  - COMMAND=test ENVOY_ACCESS="default" ENVOY_AUTH="default" COUCH_HOST=http://127.0.0.1:3001
+  - COMMAND=test ENVOY_ACCESS="id" ENVOY_AUTH="default" COUCH_HOST=http://127.0.0.1:3001
+  - COMMAND=test ENVOY_ACCESS="default" ENVOY_AUTH="couchdb_user" COUCH_HOST=http://127.0.0.1:3001
+  - COMMAND=test ENVOY_ACCESS="id" ENVOY_AUTH="couchdb_user" COUCH_HOST=http://127.0.0.1:3001
+
+  # perf tests
+  - COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_1_user'
+  - COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_100_user'
+  - COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_1000_user'
+  - COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_10000_user'
+
+matrix:
+  allow_failures:
+  - env: COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_1_user'
+  - env: COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_100_user'
+  - env: COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_1000_user'
+  - env: COMMAND=perf ENVOY_ACCESS="id" ENVOY_DATABASE_NAME='perftest_10000_user'
+
+  fast_finish: true

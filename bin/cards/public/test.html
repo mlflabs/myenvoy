@@ -1,0 +1,131 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/6.0.0/pouchdb.js"></script>
+  
+</head>
+
+<body>
+Testing.....<BR>
+
+  <input type="button" value="Capacity Chart" onclick="myFunction(this, 'red')" >
+  <p >Click me to change my text color.</p><BR>
+  <input type="button" value="CLEAR" onclick="cleardb(this)" >
+
+<script>
+
+wait = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms)
+  })
+}
+
+cleardb = async (t) => {
+  
+  new PouchDB('a').destroy();
+  new PouchDB('a_changes').destroy();
+
+}
+
+myFunction = async (elmnt,clr) => {
+console.log('starting...')
+
+
+try{
+  PouchDB.debug.enable('*');
+  let remoteURL = 'http://mike:pass@localhost:9000/a'; 
+  let local = 'test1111';
+
+  await new PouchDB(local).destroy();
+  wait(100);
+
+  local = await new PouchDB(local)
+  remote = await new PouchDB(remoteURL)
+
+  //const alldocs_ = await remote.allDocs();
+
+  //alldocs_.rows.forEach(async d => {
+  //  console.log(d);
+  //});
+
+  const docs = addDocs(5, 't');
+  console.log(docs);
+  const res1 = await local.bulkDocs(docs);
+  console.log(res1);
+  console.log('*********************************');
+  await wait(2000);
+  local.replicate.to(remote).on('complete', async () => {
+    const res2 = await local.allDocs();
+    console.log(res2);
+  }).on('error',  (err) => {
+    console.log(err)
+  });
+  
+  
+  
+
+}
+catch(err){
+  console.log(err);
+}
+
+
+/*
+local.replicate.from(remote).then((rec)=>{
+  console.log('testing....');
+})
+
+let local = new PouchDB(dbs.local)
+let docs = testUtils.makeDocs(5)
+      
+let remote, response
+
+      
+await remote.bulkDocs(docs)
+//await wait(1000)
+await local.replicate.from(remote)
+//await wait(1000)
+response = await local.allDocs({ include_docs: true });
+console.log(response)
+
+
+*/
+
+
+}
+
+addDocs = (num, prev='test') => {
+  data = [];
+  for(i=0; i< num; i++){
+    let doc = {
+      _id: prev + i,
+      test: i,
+      meta_access: {
+        users: {
+          mike: {
+            r: true,
+            w: true
+          }
+        },
+        channels: {
+          test: {
+            r: true,
+            w: true
+          },
+          invalid:{
+            r: true,
+            w: true,
+          }
+        }
+      }
+    };
+    data.push(doc);
+  };
+  return data;
+}
+
+</script>
+
+
+
+</body>
+</html>

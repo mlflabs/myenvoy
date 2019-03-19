@@ -1,0 +1,16 @@
+{
+  "_id": "user{{integer 1 1000}}:{{uuid}}",
+  "name": "{{name}}",
+  "age": {{integer}},
+  "date": "{{date}}",
+  "description": "{{words 20}}",
+  "dog": "{{dog}}",
+  "address": {
+    "street": "{{street}}",
+    "city": "{{city}}",
+    "state": "{{state}}",
+    "zip": "{{zip}}"
+  },
+  "tel": "{{tel}}",
+  "email": "{{email}}"
+}

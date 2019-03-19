@@ -1,0 +1,18 @@
+<html>
+<head>
+    <script src="//cdn.jsdelivr.net/npm/pouchdb@7.0.0/dist/pouchdb.min.js"></script>
+
+    <script>
+      let remote = new PouchDB('http://envoy1546523739621user1:thepassword@localhost:8000/envoy1546523739621');
+      let local = new PouchDB(dbs.local)
+
+      local.replicate.from(remote).then((rec)=>{
+        console.log('testing....');
+      })
+    </script>
+</head>
+
+<body>
+
+</body>
+</html>

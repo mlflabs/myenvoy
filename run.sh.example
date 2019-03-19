@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export COUCH_HOST='https://sdlfksdfkjskdfjsdklf:sdkfsldfjsd98fs980dfs09@example.cloudant.com'
+export PORT=3000
+export MBAAS_DATABASE_NAME='mbaas'
