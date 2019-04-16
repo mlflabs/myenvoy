@@ -49,16 +49,9 @@
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "express-pouchdb": "^4.1.0",
-    "pouchdb": "^7.0.0",
+    // "pouchdb": "^7.0.0",
     "pouchdb-envoy": "^0.6.0",
     "standard": "^12.0.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cloudant-labs/envoy"
-  },
-  "bugs": {
-    "url": "https://github.com/cloudant-labs/envoy/issues"
   },
   "bin": {
     "envoy": "./bin/www"
