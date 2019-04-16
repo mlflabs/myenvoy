@@ -5,6 +5,7 @@ process.env.ENVOY_DATABASE_NAME =
   (process.env.ENVOY_DATABASE_NAME || 'zenvoy') +
     (new Date().getTime())
   
+process.env.COUCH_HOST = 'http://mike:pass@localhost:5984';
 
 // enable /_adduser endpoint
 process.env.PRODUCTION = 'false'
