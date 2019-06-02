@@ -1,17 +1,31 @@
-require('dotenv').config();
 const path = require('path');
-const express = require('express');
-
-console.log('PORT::: ', process.env.COUCH_HOST);
+var express = require('express');
 
 router = express.Router();
+//require('dotenv').config()
 
 // my custom route
-router.get('/ok', async (req, res) => {
+router.get('/ok', function(req, res) {
   res.send("ok");
 });
 
-const envoy = require('../../app')();
+var opts = {
+    couchHost: 'http://mike:pass@localhost:5984',
+    databaseName: 'jwttest',
+    usersDatabaseName: 'jwtusers',
+    auth: 'jwt',
+    access: '',
+    authTokenSecret: 'secret',
+    authTokenLength: '1d',
+    logFormat: 'dev',
+    production: false, 
+    port: 9000,
+    static: path.join(__dirname, './public'),
+    router: router
+};
+ 
+const envoy = require('../../app')(opts);
 envoy.events.on('listening', function() {
-  console.log('[OK]  Server is up: ', envoy.opts.port);
+  console.log('[OK]  Server is up');
 });
+   
