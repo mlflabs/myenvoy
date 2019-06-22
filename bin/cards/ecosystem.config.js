@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
-    id: 'mfltasks',
-    name: 'mlftasks',
+    id: 'cards',
+    name: 'cards',
     script: './index.js',
 
     instances: 1,

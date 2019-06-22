@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
-    id: 'mflstudy',
-    name: 'mlfstudy',
+    id: 'study',
+    name: 'study',
     script: './index.js',
 
     instances: 1,
