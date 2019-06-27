@@ -11,7 +11,7 @@ module.exports = (opts) => {
   const events = require('events')
   const ee = new events.EventEmitter()
   const morgan = require('morgan')
-  const cors = require('./lib/cors')
+  const cors = require('cors')
   const path = require('path')
   const auth = require('./lib/auth')
   const nano = Nano(app.opts.couchHost)
