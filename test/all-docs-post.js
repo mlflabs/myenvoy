@@ -37,8 +37,8 @@ describe('POST /all_docs', function () {
       url1 = remoteURL.replace(/\/[a-z0-9]+$/, '')
       user1 = remoteURL.split(':')[1].substring(2);
       access1 = { meta_access:[ 'u|'+ user1 ] };
-      console.log(user1);
-      console.log(access1);
+      //console.log(user1);
+      //console.log(access1);
       docs = docs.map(d =>{
         return {...d, ...access1};
       });

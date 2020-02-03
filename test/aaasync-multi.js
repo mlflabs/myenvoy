@@ -48,13 +48,6 @@ describe('two way sync', function () {
       { meta_access: { ['u|'+ user2 + '|4']:{r: true, w: true}}});
     const user3 = remoteURL3.split(':')[1].substring(2);
 
-
-    
-
-    const mike = { name: 'mike', channels: {}};
-    const test = { name: 'test', channels: {}};
-    const test2 = { name: 'test2', channels: {}};
-
     const docs1 = [
       {_id: 'p|pi|1', "meta_access": ["u|"+user1+"|1"]},
       {_id: 'p|pi|2', "meta_access": ["u|"+user1+"|2"]},
@@ -102,7 +95,7 @@ describe('two way sync', function () {
     client1.replicate.to(remote1);
     client2.replicate.to(remote2);
     client3.replicate.to(remote3);
-    await wait(500);
+    await wait(1500);
     let response11 = await remote1.allDocs();
     let response22 = await remote2.allDocs();
     let response33 = await remote3.allDocs();

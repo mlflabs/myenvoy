@@ -18,7 +18,7 @@ describe('last test - final cleanup', () => {
       const dbs = await remote.db.list();
       const name = 'zenvoy';
       let counter = 0;
-      console.log(dbs, dbs.length);
+      //console.log(dbs, dbs.length);
       for(let i=0; i<dbs.length; i++){
         if(dbs[i].startsWith(name)){
           counter++;

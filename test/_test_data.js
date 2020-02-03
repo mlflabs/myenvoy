@@ -18,7 +18,7 @@ exports.doc4 = {
 };
 
 exports.mike = {
-  name: 'mike',
+  id: 'mike',
   meta_access: {
     read: {
       r: true,
@@ -38,7 +38,7 @@ exports.mike = {
   }
 }
 exports.test1 = {
-  name: 'test',
+  id: 'test',
   meta_access: {
     test: {
       r: true,
@@ -51,7 +51,7 @@ exports.test1 = {
   }
 }
 exports.test2 = {
-  name: 'test',
+  id: 'test',
   meta_access: {
     test: {
       r: true,
@@ -63,7 +63,7 @@ exports.test2 = {
   }
 }
 exports.test3 = {
-  name: 'test',
+  id: 'test',
   meta_access: {
     test: {
       r: false,
@@ -75,7 +75,7 @@ exports.test3 = {
   }
 }
 exports.test4 = {
-  name: 'test',
+  id: 'test',
   meta_access: {
     invalid: {
 
