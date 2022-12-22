@@ -38,7 +38,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.15",
     "lodash.isequal": "^4.5.0",
     "morgan": "^1.9.1",
